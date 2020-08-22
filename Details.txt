@@ -1,0 +1,1 @@
+This project has been built using react.js and built google clone with the search functionality.
