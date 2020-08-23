@@ -19,7 +19,7 @@ function SearchPage() {
   //https://developers.google.com/custom-search/v1/using_rest#making_a_request this api to create a key
   //https://cse.google.com/cse/create/new to create a new search engine
 
-//   const data = Response;
+  //   const data = Response;
   console.log(data);
 
   return (
@@ -68,25 +68,37 @@ function SearchPage() {
           </div>
         </div>
       </div>
-     {term && (
-          <div className="searchPage_results">
-              <p className="searchPage_resultCount">
-     About {data?.searchInformation.formattedTotalResults}results({data?.searchInformation.formattedSearchTime}seconds) for {term}
-              </p>
-              {data?.items.map(item => (
-                  <div className="searchPage_result">
-                    <a href={item.link} >
-                        {item.pagemap?.cse_image?.length> 0 && item.pagemap?.cse_image[0]?.src && (
-                            <img className="searchPage_resultImage" src={item.pagemap?.cse_image?.length>0 && item.pagemap?.cse_image[0]?.src} />)}{item.displayLink}</a> 
-                    <a className="searchPage_resultTitle" href={item.link}><h2>{item.title}</h2></a>
+      {term && (
+        <div className="searchPage_results">
+          <p className="searchPage_resultCount">
+            About {data?.searchInformation.formattedTotalResults}results(
+            {data?.searchInformation.formattedSearchTime}seconds) for {term}
+          </p>
+          {data?.items.map((item) => (
+            <div className="searchPage_result">
+              <a href={item.link}>
+                {item.pagemap?.cse_image?.length > 0 &&
+                  item.pagemap?.cse_image[0]?.src && (
+                    <img
+                      className="searchPage_resultImage"
+                      src={
+                        item.pagemap?.cse_image?.length > 0 &&
+                        item.pagemap?.cse_image[0]?.src
+                      }
+                    />
+                  )}
+                {item.displayLink}
+              </a>
+              <a className="searchPage_resultTitle" href={item.link}>
+                <h2>{item.title}</h2>
+              </a>
 
-                    <p className="searchPage_resultSnippet">{item.snippet}</p> 
-                    </div>
-
-              ))}
-          </div>
-     )}
-     </div>
+              <p className="searchPage_resultSnippet">{item.snippet}</p>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
   );
 }
 
